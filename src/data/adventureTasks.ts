@@ -1,76 +1,100 @@
-import { AdventureTask } from '../types';
+import { AdventureTask } from "../types";
 
 export const adventureTasks: AdventureTask[] = [
   {
-    id: '1',
-    title: 'Find a Hidden Path',
-    description: 'Take a turn you\'ve never taken before. Explore a side trail or path you usually pass by. Document what you discover.',
-    image: 'https://images.pexels.com/photos/1578750/pexels-photo-1578750.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "1",
+    title: "Find a Hidden Path",
+    description:
+      "Take a turn you've never taken before. Explore a side trail or path you usually pass by. Document what you discover.",
+    image:
+      "https://images.pexels.com/photos/1578750/pexels-photo-1578750.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '2',
-    title: 'Tree Meditation',
-    description: 'Find the oldest or most interesting tree you can. Sit beside it for 5 minutes and observe the life around it.',
-    image: 'https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "2",
+    title: "Tree Meditation",
+    description:
+      "Find the oldest or most interesting tree you can. Sit beside it for 5 minutes and observe the life around it.",
+    image:
+      "https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '3',
-    title: 'Water Connection',
-    description: 'Seek out any body of water - a stream, pond, or lake. Spend time listening to the sounds it makes and watching its movement.',
-    image: 'https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "3",
+    title: "Water Connection",
+    description:
+      "Seek out any body of water - a stream, pond, or lake. Spend time listening to the sounds it makes and watching its movement.",
+    image:
+      "https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '4',
-    title: 'Wildlife Spotting',
-    description: 'Challenge yourself to spot 5 different types of wildlife (birds, insects, animals). Take mental notes of their behavior.',
-    image: 'https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "4",
+    title: "Wildlife Spotting",
+    description:
+      "Challenge yourself to spot 5 different types of wildlife (birds, insects, animals). Take mental notes of their behavior.",
+    image:
+      "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '5',
-    title: 'Barefoot Walking',
-    description: 'Find a safe spot and walk barefoot on grass, sand, or earth for 3 minutes. Feel the connection to the ground.',
-    image: 'https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "5",
+    title: "Barefoot Walking",
+    description:
+      "Find a safe spot and walk barefoot on grass, sand, or earth for 3 minutes. Feel the connection to the ground.",
+    image:
+      "https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '6',
-    title: 'Cloud Watching',
-    description: 'Find a comfortable spot, lie down or sit, and spend 5 minutes watching the clouds. What shapes can you see?',
-    image: 'https://images.pexels.com/photos/1671325/pexels-photo-1671325.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "6",
+    title: "Cloud Watching",
+    description:
+      "Find a comfortable spot, lie down or sit, and spend 5 minutes watching the clouds. What shapes can you see?",
+    image:
+      "https://images.pexels.com/photos/1671325/pexels-photo-1671325.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '7',
-    title: 'Natural Colors Hunt',
-    description: 'Find objects in nature representing the colors of the rainbow. Red, orange, yellow, green, blue, indigo, violet.',
-    image: 'https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "7",
+    title: "Natural Colors Hunt",
+    description:
+      "Find objects in nature representing the colors of the rainbow. Red, orange, yellow, green, blue, indigo, violet.",
+    image:
+      "https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '8',
-    title: 'Sunrise or Sunset Walk',
-    description: 'Time your walk to witness either sunrise or sunset. Pause and take in the changing colors of the sky.',
-    image: 'https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "8",
+    title: "Sunrise or Sunset Walk",
+    description:
+      "Time your walk to witness either sunrise or sunset. Pause and take in the changing colors of the sky.",
+    image:
+      "https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '9',
-    title: 'Stone Stack',
-    description: 'Collect smooth stones and try to balance them in a stack. Practice patience and focus while creating your cairn.',
-    image: 'https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "9",
+    title: "Stone Stack",
+    description:
+      "Collect smooth stones and try to balance them in a stack. Practice patience and focus while creating your cairn.",
+    image:
+      "https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '10',
-    title: 'Nature Sounds',
-    description: 'Stop walking and close your eyes for 3 minutes. Count how many different sounds you can identify from nature.',
-    image: 'https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "10",
+    title: "Nature Sounds",
+    description:
+      "Stop walking and close your eyes for 3 minutes. Count how many different sounds you can identify from nature.",
+    image:
+      "https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '11',
-    title: 'Hill Climb Challenge',
-    description: 'Find the highest point in your walking area and climb to the top. Enjoy the view and take a few deep breaths.',
-    image: 'https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=800'
+    id: "11",
+    title: "Hill Climb Challenge",
+    description:
+      "Find the highest point in your walking area and climb to the top. Enjoy the view and take a few deep breaths.",
+    image:
+      "https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
   {
-    id: '12',
-    title: 'Leaf Collection',
-    description: 'Collect 5 different types of leaves. Notice their shapes, colors, and textures. Learn to identify at least one tree species.',
-    image: 'https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&w=800'
-  }
+    id: "12",
+    title: "Leaf Collection",
+    description:
+      "Collect 5 different types of leaves. Notice their shapes, colors, and textures. Learn to identify at least one tree species.",
+    image:
+      "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
 ];
