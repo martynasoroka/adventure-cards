@@ -110,20 +110,20 @@ function App() {
   const availableCount = getAvailableTasks().length;
 
   return (
-    <div className="min-h-screen bg-brandBlue/80 flex items-center justify-center">
-      <div className="relative md:min-h-screen flex flex-col items-center justify-center md:p-20 px-4 max-md:py-16 max-w-3xl w-full text-center md:space-y-8 space-y-4">
-        <div className="space-y-4 animate-fadeIn">
-          <h1 className="text-4xl md:text-6xl font-bold text-brandGreen">
+    <div className="min-h-screen bg-brandBrown pt-12 justify-center">
+      <div className="relative md:min-h-screen flex flex-col justify-center md:p-20 px-4 max-w-3xl w-full text-center md:space-y-8 space-y-4">
+        <div className="animate-fadeIn">
+          <h1 className="text-4xl md:text-6xl font-bold text-brandBeige">
             Shuffle your adventure for today
           </h1>
-          <p className="text-md text-brandBeige font-semibold">
+          <p className="text-md text-brandBeige font-semibold pt-4">
             {availableCount} adventure{availableCount !== 1 ? "s" : ""}{" "}
             available
           </p>
         </div>
 
-        <div className="relative group animate-scaleIn rounded-2xl p-4 bg-brandBeige/80">
-          <div className="mb-6">
+        <div className="relative group animate-scaleIn rounded-2xl p-4 bg-brandGreen/80">
+          <div className="mb-4">
             <img
               src={Cover}
               alt="Deck of cards"
@@ -133,7 +133,7 @@ function App() {
 
           <button
             onClick={pickRandomTask}
-            className="w-full py-4 px-8 bg-brandBrown text-brandBeige rounded-xl font-semibold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+            className="w-full py-4 px-8 bg-brandOrange/60 text-brandBeige rounded-xl font-semibold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
           >
             <Shuffle size={24} />
             Pick Your Adventure
