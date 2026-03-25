@@ -24,10 +24,7 @@ export default function TaskModal({
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center md:p-4 animate-fadeIn"
-      style={{ backgroundImage: `url(${Background})` }}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4  animate-fadeIn bg-brandGreen">
       <div className="mx-4 relative rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all animate-scaleIn">
         <button
           onClick={onClose}
@@ -50,7 +47,7 @@ export default function TaskModal({
           className={`p-6 transition-colors duration-500 ${showSuccess ? "bg-green-50" : "bg-brandBeige"}`}
         >
           {showSuccess && (
-            <div className="mb-4 p-4 bg-brandGreen rounded-lg text-brandBeige text-center text-lg font-medium animate-fadeIn">
+            <div className="mb-4 p-4 bg-brandGreen/80 rounded-lg text-white text-center text-lg font-medium animate-fadeIn">
               Great job! Adventure completed!
             </div>
           )}

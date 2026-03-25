@@ -84,7 +84,9 @@ function App() {
     if (currentTask) {
       setSavedTaskId(currentTask.id);
       setIsModalOpen(false);
-      pickRandomTask();
+      setTimeout(() => {
+        pickRandomTask();
+      }, 300);
     }
   };
 
