@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { AdventureTask } from "../types";
-import Background from "./assets/background.png";
+import { Illustrations } from "./assets/illustrations";
 
 interface TaskModalProps {
   task: AdventureTask;
@@ -11,6 +11,24 @@ interface TaskModalProps {
   onHide: () => void;
   showSuccess: boolean;
 }
+
+const getIllustration = (imageId: string) => {
+  const illustrationMap: { [key: string]: React.ReactNode } = {
+    "hidden-path": Illustrations.hiddenPath,
+    "tree-meditation": Illustrations.treeMediation,
+    "water-connection": Illustrations.waterConnection,
+    "wildlife-spotting": Illustrations.wildlifeSpotting,
+    "barefoot-walking": Illustrations.barefootWalking,
+    "cloud-watching": Illustrations.cloudWatching,
+    "natural-colors": Illustrations.naturalColorsHunt,
+    "sunset-walk": Illustrations.sunsetWalk,
+    "stone-stack": Illustrations.stoneStack,
+    "nature-sounds": Illustrations.natureSounds,
+    "hill-climb": Illustrations.hillClimb,
+    "leaf-collection": Illustrations.leafCollection,
+  };
+  return illustrationMap[imageId];
+};
 
 export default function TaskModal({
   task,
@@ -23,8 +41,10 @@ export default function TaskModal({
 }: TaskModalProps) {
   if (!isOpen) return null;
 
+  const illustration = getIllustration(task.image);
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4  animate-fadeIn bg-brandGreen">
+    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 animate-fadeIn bg-brandGreen">
       <div className="mx-4 relative rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all animate-scaleIn">
         <button
           onClick={onClose}
@@ -34,17 +54,17 @@ export default function TaskModal({
           <X size={20} className="text-gray-600" />
         </button>
 
-        <div className="relative h-64 overflow-hidden">
-          <img
-            src={task.image}
-            alt={task.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="relative h-64 overflow-hidden bg-white">
+          <div className="w-full h-full">
+            {illustration}
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
         </div>
 
         <div
-          className={`p-6 transition-colors duration-500 ${showSuccess ? "bg-green-50" : "bg-brandBeige"}`}
+          className={`p-6 transition-colors duration-500 ${
+            showSuccess ? "bg-green-50" : "bg-brandBeige"
+          }`}
         >
           {showSuccess && (
             <div className="mb-4 p-4 bg-brandGreen/80 rounded-lg text-white text-center text-lg font-medium animate-fadeIn">
