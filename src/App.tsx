@@ -112,8 +112,8 @@ function App() {
   const availableCount = getAvailableTasks().length;
 
   return (
-    <div className="md:flex min-h-screen flex-col bg-brandBrown pt-12 justify-center">
-      <div className="relative flex-1 md:min-h-screen flex flex-col items-center justify-center md:pt-8 md:pb-20 px-4 max-w-3xl w-full text-center md:space-y-8 space-y-4">
+    <div className="md:flex min-h-screen bg-brandBrown pt-12 justify-center">
+      <div className="relative md:min-h-screen flex flex-col items-center justify-center md:pt-8 md:pb-20 px-4 max-w-3xl w-full text-center md:space-y-8 space-y-4">
         <div className="animate-fadeIn">
           <h1 className="text-4xl md:text-6xl font-bold text-brandBeige">
             Shuffle your adventure for today
@@ -142,10 +142,6 @@ function App() {
           </button>
         </div>
       </div>
-
-      <footer className="w-full text-center py-6 px-4 text-brandBeige text-sm">
-        © {new Date().getFullYear()} Martyna Soroka
-      </footer>
 
       {currentTask && (
         <TaskModal
