@@ -11,10 +11,10 @@ function App() {
     const saved = localStorage.getItem("taskStates");
     return saved ? JSON.parse(saved) : {};
   });
-
   const [currentTask, setCurrentTask] = useState<AdventureTask | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isShuffling, setIsShuffling] = useState(false);
   const [savedTaskId, setSavedTaskId] = useState<string | null>(() => {
     return localStorage.getItem("savedTaskId");
   });
@@ -50,7 +50,6 @@ function App() {
     }
 
     const availableTasks = getAvailableTasks();
-
     if (availableTasks.length === 0) {
       alert("You've completed all adventures! Resetting...");
       setTaskStates({});
@@ -59,10 +58,19 @@ function App() {
 
     const randomIndex = Math.floor(Math.random() * availableTasks.length);
     const selectedTask = availableTasks[randomIndex];
-
     setCurrentTask(selectedTask);
     setIsModalOpen(true);
     setShowSuccess(false);
+  };
+
+  // Trigger shuffle animation, then open the modal after it completes
+  const handlePickClick = () => {
+    if (isShuffling) return;
+    setIsShuffling(true);
+    setTimeout(() => {
+      setIsShuffling(false);
+      pickRandomTask();
+    }, 620); // matches shuffleDeck animation duration (0.6s) + tiny buffer
   };
 
   const handleDone = () => {
@@ -72,7 +80,6 @@ function App() {
         [currentTask.id]: "completed",
       }));
       setShowSuccess(true);
-
       setTimeout(() => {
         setIsModalOpen(false);
         setShowSuccess(false);
@@ -97,7 +104,6 @@ function App() {
         [currentTask.id]: "hidden",
       }));
       setIsModalOpen(false);
-
       setTimeout(() => {
         pickRandomTask();
       }, 300);
@@ -125,20 +131,24 @@ function App() {
         </div>
 
         <div className="relative group animate-scaleIn rounded-2xl p-4 bg-brandGreen/80">
+          {/* Deck image — animates with a shuffle wiggle when picked */}
           <div className="mb-4">
             <img
               src={Cover}
               alt="Deck of cards"
-              className="w-150 h-150 mx-auto object-cover rounded-xl"
+              className={`w-150 h-150 mx-auto object-cover rounded-xl transition-all ${
+                isShuffling ? "animate-shuffleDeck" : ""
+              }`}
             />
           </div>
 
           <button
-            onClick={pickRandomTask}
-            className="w-full py-4 px-8 bg-brandOrange/60 text-brandBeige rounded-xl font-semibold text-lg hover:from-emerald-700 hover:to-teal-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+            onClick={handlePickClick}
+            disabled={isShuffling}
+            className="w-full py-4 px-8 bg-brandOrange/60 text-brandBeige rounded-xl font-semibold text-lg hover:bg-brandOrange/80 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            <Shuffle size={24} />
-            Pick Your Adventure
+            <Shuffle size={24} className={isShuffling ? "animate-spin" : ""} />
+            {isShuffling ? "Shuffling..." : "Pick Your Adventure"}
           </button>
         </div>
       </div>
