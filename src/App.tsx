@@ -4,7 +4,7 @@ import Cover from "./components/assets/deck-cover.png";
 import TaskModal from "./components/TaskModal";
 import { adventureTasks } from "./data/adventureTasks";
 import { AdventureTask, TaskState } from "./types";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [taskStates, setTaskStates] = useState<TaskState>(() => {
