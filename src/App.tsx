@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Shuffle } from "lucide-react";
 import Cover from "./components/assets/deck-cover.png";
-import Background from "./components/assets/background.png";
 import TaskModal from "./components/TaskModal";
 import { adventureTasks } from "./data/adventureTasks";
 import { AdventureTask, TaskState } from "./types";
+import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   const [taskStates, setTaskStates] = useState<TaskState>(() => {
@@ -118,53 +118,59 @@ function App() {
   const availableCount = getAvailableTasks().length;
 
   return (
-    <div className="md:flex min-h-screen bg-brandBrown pt-12 justify-center">
-      <div className="relative md:min-h-screen flex flex-col items-center justify-center md:pt-8 md:pb-20 px-4 max-w-3xl w-full text-center md:space-y-8 space-y-4">
-        <div className="animate-fadeIn">
-          <h1 className="text-4xl md:text-6xl font-bold text-brandBeige">
-            Shuffle your adventure for today
-          </h1>
-          <p className="text-md text-brandBeige font-semibold pt-4">
-            {availableCount} adventure{availableCount !== 1 ? "s" : ""}{" "}
-            available
-          </p>
-        </div>
-
-        <div className="relative group animate-scaleIn rounded-2xl p-4 bg-brandGreen/80">
-          {/* Deck image — animates with a shuffle wiggle when picked */}
-          <div className="mb-4">
-            <img
-              src={Cover}
-              alt="Deck of cards"
-              className={`w-150 h-150 mx-auto object-cover rounded-xl transition-all ${
-                isShuffling ? "animate-shuffleDeck" : ""
-              }`}
-            />
+    <>
+      <div className="md:flex min-h-screen bg-brandBrown pt-12 justify-center">
+        <div className="relative md:min-h-screen flex flex-col items-center justify-center md:pt-8 md:pb-20 px-4 max-w-3xl w-full text-center md:space-y-8 space-y-4">
+          <div className="animate-fadeIn">
+            <h1 className="text-4xl md:text-6xl font-bold text-brandBeige">
+              Shuffle your adventure for today
+            </h1>
+            <p className="text-md text-brandBeige font-semibold pt-4">
+              {availableCount} adventure{availableCount !== 1 ? "s" : ""}{" "}
+              available
+            </p>
           </div>
 
-          <button
-            onClick={handlePickClick}
-            disabled={isShuffling}
-            className="w-full py-4 px-8 bg-brandOrange/60 text-brandBeige rounded-xl font-semibold text-lg hover:bg-brandOrange/80 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            <Shuffle size={24} className={isShuffling ? "animate-spin" : ""} />
-            {isShuffling ? "Shuffling..." : "Pick Your Adventure"}
-          </button>
-        </div>
-      </div>
+          <div className="relative group animate-scaleIn rounded-2xl p-4 bg-brandGreen/80">
+            {/* Deck image — animates with a shuffle wiggle when picked */}
+            <div className="mb-4">
+              <img
+                src={Cover}
+                alt="Deck of cards"
+                className={`w-150 h-150 mx-auto object-cover rounded-xl transition-all ${
+                  isShuffling ? "animate-shuffleDeck" : ""
+                }`}
+              />
+            </div>
 
-      {currentTask && (
-        <TaskModal
-          task={currentTask}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          onDone={handleDone}
-          onSaveForLater={handleSaveForLater}
-          onHide={handleHide}
-          showSuccess={showSuccess}
-        />
-      )}
-    </div>
+            <button
+              onClick={handlePickClick}
+              disabled={isShuffling}
+              className="w-full py-4 px-8 bg-brandOrange/60 text-brandBeige rounded-xl font-semibold text-lg hover:bg-brandOrange/80 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              <Shuffle
+                size={24}
+                className={isShuffling ? "animate-spin" : ""}
+              />
+              {isShuffling ? "Shuffling..." : "Pick Your Adventure"}
+            </button>
+          </div>
+        </div>
+
+        {currentTask && (
+          <TaskModal
+            task={currentTask}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onDone={handleDone}
+            onSaveForLater={handleSaveForLater}
+            onHide={handleHide}
+            showSuccess={showSuccess}
+          />
+        )}
+      </div>
+      <Analytics />
+    </>
   );
 }
 
