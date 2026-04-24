@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Shuffle } from "lucide-react";
+import { Shuffle, LogIn, LogOut, User } from "lucide-react";
 import Cover from "./components/assets/deck-cover.png";
 import TaskModal from "./components/TaskModal";
+import AuthModal from "./components/AuthModal";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { adventureTasks } from "./data/adventureTasks";
 import { AdventureTask, TaskCategory, TaskState } from "./types";
 import { Analytics } from "@vercel/analytics/react";
@@ -13,7 +15,9 @@ const CATEGORIES: { id: TaskCategory; label: string; emoji: string }[] = [
   { id: "hands-on", label: "Get Hands On", emoji: "🖐️" },
 ];
 
-function App() {
+function AppContent() {
+  const { user, signOut } = useAuth();
+
   const [taskStates, setTaskStates] = useState<TaskState>(() => {
     const saved = localStorage.getItem("taskStates");
     return saved ? JSON.parse(saved) : {};
@@ -26,6 +30,7 @@ function App() {
   const [savedTaskId, setSavedTaskId] = useState<string | null>(() => {
     return localStorage.getItem("savedTaskId");
   });
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("taskStates", JSON.stringify(taskStates));
@@ -38,6 +43,11 @@ function App() {
       localStorage.removeItem("savedTaskId");
     }
   }, [savedTaskId]);
+
+  // Close auth modal once user is signed in
+  useEffect(() => {
+    if (user) setIsAuthOpen(false);
+  }, [user]);
 
   const getAvailableTasksForCategory = (category: TaskCategory) => {
     return adventureTasks.filter(
@@ -135,7 +145,34 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-brandBrown pt-12 px-4 pb-12">
+      {/* Fixed top bar */}
+      <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-end px-4 py-3 bg-brandBrown/90 backdrop-blur-sm border-b border-brandBeige/10">
+        {user ? (
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 text-brandBeige/80 text-sm">
+              <User size={15} />
+              <span className="max-w-[180px] truncate">{user.email}</span>
+            </div>
+            <button
+              onClick={signOut}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brandGreen/60 text-brandBeige text-sm font-medium hover:bg-brandGreen/80 transition-colors"
+            >
+              <LogOut size={14} />
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => setIsAuthOpen(true)}
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-brandOrange/70 text-brandBeige text-sm font-medium hover:bg-brandOrange/90 transition-colors shadow-sm"
+          >
+            <LogIn size={14} />
+            Sign In
+          </button>
+        )}
+      </header>
+
+      <div className="min-h-screen bg-brandBrown pt-20 px-4 pb-12">
         <div className="max-w-4xl mx-auto">
           <div className="animate-fadeIn text-center mb-10">
             <h1 className="text-4xl md:text-6xl font-bold text-brandBeige">
@@ -196,8 +233,19 @@ function App() {
           />
         )}
       </div>
+
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+
       <Analytics />
     </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
